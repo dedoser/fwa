@@ -1,9 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
+<%--
+  Created by IntelliJ IDEA.
+  User: Андрей
+  Date: 26.06.2022
+  Time: 21:25
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Sign In</title>
-    <form action="/signIn" method="post">
+    <title>Sign Up</title>
+    <form action="${pageContext.request.contextPath}/singUp" method="post">
         <label for="first_name">First Name</label>
         <input type="text" id="first_name" name="first_name"><br><br>
 

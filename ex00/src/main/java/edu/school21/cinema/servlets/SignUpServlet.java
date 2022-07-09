@@ -1,8 +1,7 @@
 package edu.school21.cinema.servlets;
 
 import edu.school21.cinema.models.User;
-import edu.school21.cinema.service.UserService;
-import lombok.RequiredArgsConstructor;
+import edu.school21.cinema.services.UserService;
 import org.springframework.context.ApplicationContext;
 
 import javax.servlet.RequestDispatcher;
@@ -14,14 +13,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/")
+@WebServlet("/signUp")
 public class SignUpServlet extends HttpServlet {
 
     private UserService userService;
 
     @Override
     public void init(ServletConfig config) throws ServletException {
-        ApplicationContext context = (ApplicationContext) config.getServletContext();
+        ApplicationContext context = (ApplicationContext) config.getServletContext().getAttribute("applicationContext");
         if (userService == null) {
             userService = context.getBean(UserService.class);
         }
@@ -29,8 +28,7 @@ public class SignUpServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("text/html");
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/signUp.html");
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/jsp/signUp.jsp");
         requestDispatcher.forward(req, resp);
     }
 
@@ -42,6 +40,8 @@ public class SignUpServlet extends HttpServlet {
                 .email(req.getParameter("email"))
                 .password(req.getParameter("password"))
                 .build();
+        if (userService.isUserAlreadyCreated(user)) {
 
+        }
     }
 }
